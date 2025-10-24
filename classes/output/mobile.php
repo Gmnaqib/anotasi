@@ -57,21 +57,8 @@ class mobile {
                 ]
             ],
             'javascript' => '
-                var that = this;
-                
-                this.viewModuleAnnotations = function(modulId, modulName) {
-                    // Navigate to module annotations page
-                    that.CoreNavigatorProvider.navigate("core-site-plugins-plugin-page", {
-                        title: modulName + " - Annotations",
-                        component: "block_anotasi",
-                        method: "view_module_annotations",
-                        args: {
-                            modul_id: modulId,
-                            modul_name: modulName,
-                            page: 1
-                        }
-                    });
-                };
+                // JavaScript for any additional functionality if needed
+                console.log("Block anotasi mobile loaded");
             ',
             'otherdata' => [
                 'user_id' => $USER->id
@@ -117,46 +104,15 @@ class mobile {
                         'has_next' => $data['has_next'],
                         'has_previous' => $data['has_previous'],
                         'modul_name' => $data['modul_name'],
-                        'modul_id' => $modul_id
+                        'modul_id' => $modul_id,
+                        'next_page' => $data['current_page'] + 1,
+                        'previous_page' => $data['current_page'] - 1
                     ])
                 ]
             ],
             'javascript' => '
-                var that = this;
-                
-                this.nextPage = function() {
-                    var currentPage = ' . $data['current_page'] . ';
-                    var nextPage = currentPage + 1;
-                    
-                    // Update content with next page
-                    that.updateContent({
-                        modul_id: "' . $modul_id . '",
-                        modul_name: "' . $modul_name . '",
-                        page: nextPage
-                    });
-                };
-                
-                this.previousPage = function() {
-                    var currentPage = ' . $data['current_page'] . ';
-                    var prevPage = currentPage - 1;
-                    
-                    // Update content with previous page
-                    that.updateContent({
-                        modul_id: "' . $modul_id . '",
-                        modul_name: "' . $modul_name . '",
-                        page: prevPage
-                    });
-                };
-                
-                this.backToModules = function() {
-                    // Navigate back to modules list
-                    that.CoreNavigatorProvider.navigate("core-site-plugins-plugin-page", {
-                        title: "{{ \'plugin.block_anotasi.anotasi_block_title\' | translate }}",
-                        component: "block_anotasi",
-                        method: "view_anotasi_block",
-                        args: {}
-                    });
-                };
+                // JavaScript for any additional functionality if needed  
+                console.log("Annotation detail page loaded - Page ' . $data['current_page'] . ' of ' . $data['total_pages'] . '");
             ',
             'otherdata' => [
                 'modul_id' => $modul_id,

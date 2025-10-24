@@ -33,7 +33,12 @@
     <ion-header>
         <ion-toolbar color="primary">
             <ion-buttons slot="start">
-                <ion-button (click)="backToModules()">
+                <ion-button core-site-plugins-new-content
+                           component="block_anotasi"
+                           method="view_anotasi_block"
+                           [args]="{}"
+                           title="Module Annotations"
+                           samePage="false">
                     <ion-icon name="arrow-back-outline"></ion-icon>
                 </ion-button>
             </ion-buttons>
@@ -69,7 +74,14 @@
         <ion-row class="ion-margin-top">
             <ion-col size="6">
                 <%#has_previous%>
-                <ion-button expand="block" fill="outline" (click)="previousPage()">
+                <ion-button expand="block" 
+                           fill="outline" 
+                           core-site-plugins-new-content
+                           component="block_anotasi"
+                           method="view_module_annotations"
+                           [args]="{modul_id: '<% modul_id %>', modul_name: '<% modul_name %>', page: <% previous_page %>}"
+                           title="<% modul_name %> - Annotations"
+                           samePage="true">
                     <ion-icon name="chevron-back-outline" slot="start"></ion-icon>
                     {{ 'plugin.block_anotasi.previous_page' | translate }}
                 </ion-button>
@@ -84,7 +96,14 @@
             
             <ion-col size="6">
                 <%#has_next%>
-                <ion-button expand="block" fill="solid" (click)="nextPage()">
+                <ion-button expand="block" 
+                           fill="solid" 
+                           core-site-plugins-new-content
+                           component="block_anotasi"
+                           method="view_module_annotations"
+                           [args]="{modul_id: '<% modul_id %>', modul_name: '<% modul_name %>', page: <% next_page %>}"
+                           title="<% modul_name %> - Annotations"
+                           samePage="true">
                     {{ 'plugin.block_anotasi.next_page' | translate }}
                     <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
                 </ion-button>
