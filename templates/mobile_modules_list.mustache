@@ -1,0 +1,70 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template block_anotasi/mobile_modules_list
+
+    Template for displaying list of modules in mobile app.
+
+    Context variables required for this template:
+    * modules - Array of module objects
+    * has_modules - Boolean indicating if modules exist
+}}
+{{=<% %>=}}
+<ion-content>
+    <ion-header>
+        <ion-toolbar color="primary">
+            <ion-title>{{ 'plugin.block_anotasi.anotasi_block_title' | translate }}</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    
+    <div class="ion-padding">
+        <%#has_modules%>
+            <ion-card>
+                <ion-card-header>
+                    <ion-card-title>{{ 'plugin.block_anotasi.view_modules' | translate }}</ion-card-title>
+                </ion-card-header>
+                
+                <ion-card-content>
+                    <ion-list>
+                        <%#modules%>
+                        <ion-item button (click)="viewModuleAnnotations('<% modul_id %>', '<% modul_name %>')">
+                            <ion-icon name="book-outline" slot="start" color="primary"></ion-icon>
+                            <ion-label>
+                                <h2><% modul_name %></h2>
+                                <p>Course ID: <% course_id %></p>
+                                <p>Module ID: <% modul_id %></p>
+                                <ion-badge color="secondary"><% annotation_count %> annotations</ion-badge>
+                            </ion-label>
+                            <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+                        </ion-item>
+                        <%/modules%>
+                    </ion-list>
+                </ion-card-content>
+            </ion-card>
+        <%/has_modules%>
+        
+        <%^has_modules%>
+        <ion-card>
+            <ion-card-content class="ion-text-center">
+                <ion-icon name="document-outline" size="large" color="medium"></ion-icon>
+                <h3>{{ 'plugin.block_anotasi.no_modules' | translate }}</h3>
+                <p>No modules available at the moment.</p>
+            </ion-card-content>
+        </ion-card>
+        <%/has_modules%>
+    </div>
+</ion-content>

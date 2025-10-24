@@ -1,0 +1,132 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template block_anotasi/mobile_annotation_detail
+
+    Template for displaying annotation details with pagination in mobile app.
+
+    Context variables required for this template:
+    * annotation - Object containing page and text
+    * current_page - Current page number
+    * total_pages - Total number of pages
+    * has_next - Boolean indicating if next page exists
+    * has_previous - Boolean indicating if previous page exists
+    * modul_name - Name of the module
+    * modul_id - ID of the module
+}}
+{{=<% %>=}}
+<ion-content>
+    <ion-header>
+        <ion-toolbar color="primary">
+            <ion-buttons slot="start">
+                <ion-button (click)="backToModules()">
+                    <ion-icon name="arrow-back-outline"></ion-icon>
+                </ion-button>
+            </ion-buttons>
+            <ion-title><% modul_name %></ion-title>
+        </ion-toolbar>
+    </ion-header>
+    
+    <div class="ion-padding">
+        <!-- Page Counter -->
+        <ion-item lines="none" class="page-counter">
+            <ion-label class="ion-text-center">
+                <h3>{{ 'plugin.block_anotasi.page_counter' | translate }}</h3>
+                <p><% current_page %> of <% total_pages %></p>
+            </ion-label>
+        </ion-item>
+        
+        <!-- Annotation Content -->
+        <ion-card>
+            <ion-card-header>
+                <ion-card-title>
+                    <ion-icon name="document-text-outline" color="primary"></ion-icon>
+                    <% annotation.page %>
+                </ion-card-title>
+            </ion-card-header>
+            
+            <ion-card-content>
+                <core-format-text text="<% annotation.text %>" component="block_anotasi" componentId="<% modul_id %>">
+                </core-format-text>
+            </ion-card-content>
+        </ion-card>
+        
+        <!-- Navigation Buttons -->
+        <ion-row class="ion-margin-top">
+            <ion-col size="6">
+                <%#has_previous%>
+                <ion-button expand="block" fill="outline" (click)="previousPage()">
+                    <ion-icon name="chevron-back-outline" slot="start"></ion-icon>
+                    {{ 'plugin.block_anotasi.previous_page' | translate }}
+                </ion-button>
+                <%/has_previous%>
+                <%^has_previous%>
+                <ion-button expand="block" fill="outline" disabled="true">
+                    <ion-icon name="chevron-back-outline" slot="start"></ion-icon>
+                    {{ 'plugin.block_anotasi.previous_page' | translate }}
+                </ion-button>
+                <%/has_previous%>
+            </ion-col>
+            
+            <ion-col size="6">
+                <%#has_next%>
+                <ion-button expand="block" fill="solid" (click)="nextPage()">
+                    {{ 'plugin.block_anotasi.next_page' | translate }}
+                    <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+                </ion-button>
+                <%/has_next%>
+                <%^has_next%>
+                <ion-button expand="block" fill="solid" disabled="true">
+                    {{ 'plugin.block_anotasi.next_page' | translate }}
+                    <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+                </ion-button>
+                <%/has_next%>
+            </ion-col>
+        </ion-row>
+        
+        <!-- Progress Indicator -->
+        <ion-progress-bar value="<% current_page %>" max="<% total_pages %>" color="primary" class="ion-margin-top"></ion-progress-bar>
+    </div>
+</ion-content>
+
+<style>
+.page-counter {
+    --background: var(--ion-color-light);
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+
+.page-counter ion-label h3 {
+    color: var(--ion-color-primary);
+    margin-bottom: 4px;
+}
+
+.page-counter ion-label p {
+    color: var(--ion-color-medium);
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+ion-card {
+    margin-bottom: 16px;
+}
+
+ion-progress-bar {
+    height: 6px;
+    border-radius: 3px;
+}
+</style>

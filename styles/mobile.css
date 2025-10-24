@@ -1,0 +1,86 @@
+/* Mobile app styles for block_anotasi */
+
+.block_anotasi {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.block_anotasi .module-card {
+  margin-bottom: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.block_anotasi .annotation-card {
+  margin-bottom: 16px;
+  border-radius: 8px;
+}
+
+.block_anotasi .page-counter {
+  background: var(--ion-color-light);
+  border-radius: 8px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.block_anotasi .page-counter h3 {
+  color: var(--ion-color-primary);
+  margin-bottom: 4px;
+}
+
+.block_anotasi .page-counter p {
+  color: var(--ion-color-medium);
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.block_anotasi .navigation-buttons {
+  margin-top: 20px;
+}
+
+.block_anotasi .progress-indicator {
+  margin-top: 16px;
+  height: 6px;
+  border-radius: 3px;
+}
+
+.block_anotasi .no-modules-msg {
+  text-align: center;
+  color: var(--ion-color-medium);
+  padding: 40px 20px;
+}
+
+.block_anotasi .module-info {
+  padding: 12px;
+}
+
+.block_anotasi .module-info h4 {
+  margin-bottom: 8px;
+  color: var(--ion-color-primary);
+}
+
+.block_anotasi .module-badge {
+  font-size: 0.8em;
+  padding: 4px 8px;
+  border-radius: 12px;
+  background-color: var(--ion-color-secondary);
+  color: white;
+}
+
+/* Web interface styles */
+.anotasi-block-view {
+  padding: 20px;
+}
+
+.annotation-item {
+  margin-bottom: 15px;
+}
+
+.annotation-item .card-header {
+  background-color: #f8f9fa;
+  font-weight: bold;
+}
+
+.annotation-item .card-text {
+  line-height: 1.6;
+  text-align: justify;
+}
